@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.projectx.loganalyzer.producer.KafkaChatProducer;
 import com.projectx.loganalyzer.service.ChatAnalyzerService;
+import com.projectx.loganalyzer.service.MiscService;
 
 @Controller
 public class BaseController {
@@ -21,6 +22,9 @@ public class BaseController {
 	
 	@Autowired
 	private  KafkaChatProducer chatProducer;
+	
+	@Autowired
+	private MiscService miscService;
 	
 	@GetMapping("/")
 	public ResponseEntity<String> defaultMessage(){
@@ -40,6 +44,12 @@ public class BaseController {
 		return ResponseEntity.ok(topWords);
 		
 	}
+	
+	@GetMapping("/stats")
+    public ResponseEntity<Map<String, Object>> getStats() {
+       
+        return miscService.getStats();
+    }
 	
 	@PostMapping("/send-message")
     public ResponseEntity<String> sendMessage(@RequestParam String user, @RequestParam String message) {

@@ -12,14 +12,15 @@ public class RedisConfig {
     @Bean
     RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory){
 	
-	RedisTemplate<String, Object> template = new RedisTemplate<>();
-	
-	template.setConnectionFactory(connectionFactory);
-    template.setKeySerializer(new StringRedisSerializer());         // Plain string keys
-    template.setHashKeySerializer(new StringRedisSerializer());     // Plain string hash keys
-    template.setHashValueSerializer(new StringRedisSerializer());   // Plain string hash values
-    template.afterPropertiesSet();
-	return template;
+		RedisTemplate<String, Object> template = new RedisTemplate<>();
+		
+	    template.setConnectionFactory(connectionFactory);
+	    template.setKeySerializer(new StringRedisSerializer());         // For top-level keys
+	    template.setValueSerializer(new StringRedisSerializer());      // For standalone values (opsForValue)
+	    template.setHashKeySerializer(new StringRedisSerializer());    // For hash keys
+	    template.setHashValueSerializer(new StringRedisSerializer());  // For hash values
+	    template.afterPropertiesSet();
+		return template;
     }
 
 }
