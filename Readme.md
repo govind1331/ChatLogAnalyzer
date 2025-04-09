@@ -195,7 +195,7 @@ MIT License - feel free to use and modify this code as needed.
 ---
 
 **Author**: Govind Murali
-**GitHub**: [Your GitHub URL]  
+**GitHub**: https://github.com/govind1331/ChatLogAnalyzer.git
 **Date**: April 2025
 
 ---
